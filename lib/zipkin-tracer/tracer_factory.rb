@@ -1,6 +1,10 @@
+require 'pp'
+
 module ZipkinTracer
   class TracerFactory
     def tracer(config)
+      pp 'Tracer factory called with'
+      pp config
       adapter = config.adapter
 
       tracer = case adapter
@@ -20,6 +24,8 @@ module ZipkinTracer
       end
       Trace.tracer = tracer
 
+      pp tracer
+
       # TODO: move this to the TracerBase and kill scribe tracer
       ip_format = config.adapter == :kafka ? :i32 : :string
       Trace.default_endpoint = Trace::Endpoint.local_endpoint(
@@ -27,6 +33,7 @@ module ZipkinTracer
         service_name(config.service_name),
         ip_format
       )
+      pp "Factory success!"
       tracer
     end
 
