@@ -25,6 +25,7 @@ module ZipkinTracer
     B3_OPT_HEADERS = %w[HTTP_X_B3_FLAGS].freeze
 
     def initialize(app, config = nil)
+      puts "ZIPKIN RACK HANDLER INITIALIZE"
       @app = app
       @config = Config.new(app, config).freeze
       @tracer = TracerFactory.new.tracer(@config)
