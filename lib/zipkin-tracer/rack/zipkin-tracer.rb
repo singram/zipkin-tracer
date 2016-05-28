@@ -24,6 +24,8 @@ module ZipkinTracer
     B3_REQUIRED_HEADERS = %w[HTTP_X_B3_TRACEID HTTP_X_B3_PARENTSPANID HTTP_X_B3_SPANID HTTP_X_B3_SAMPLED].freeze
     B3_OPT_HEADERS = %w[HTTP_X_B3_FLAGS].freeze
 
+    puts "I'm HERE DAMN IT!"
+
     def initialize(app, config = nil)
       puts "ZIPKIN RACK HANDLER INITIALIZE"
       @app = app
