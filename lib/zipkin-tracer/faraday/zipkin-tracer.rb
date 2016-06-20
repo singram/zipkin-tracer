@@ -17,6 +17,7 @@ module ZipkinTracer
         b3_headers.each do |method, header|
           env[:request_headers][header] = trace_id.send(method).to_s
         end
+        env[:request_headers]['X-B3-Sampled'] = env[:request_headers]['X-B3-Sampled'] == 'true' ? '1' : '0'
         if trace_id.sampled?
           trace!(env, trace_id)
         else
